@@ -32,14 +32,14 @@ def ping(url, thread_count, verbose, py, num):
 try:
     url = argv[1]
 except IndexError:
-    print("No URL provided")
-    exit()
+    print("No URL provided", file=sys.stderr)
+    exit(1)
 
 try:
     thread_count = int(argv[2]) + 1
 except IndexError:
-    print("No thread count provided")
-    exit()
+    print("No thread count provided", file=sys.stderr)
+    exit(1)
 
 ping_count = 0
 verbose = False
