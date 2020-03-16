@@ -2,6 +2,7 @@ import threading
 from os import system
 from sys import argv
 from requests import get
+from os import _exit
 
 def generate(url, thread_count, verbose, py):
     if threading.active_count() < thread_count:
@@ -15,7 +16,9 @@ def generate(url, thread_count, verbose, py):
                     current_num += 1
             else:
                 break
-    print("Pinging...")
+    print("Pinging... (Press enter to stop)")
+    input()
+    _exit(0)
 
 def ping(url, thread_count, verbose, py, num):
     global ping_count
