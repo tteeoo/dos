@@ -56,7 +56,8 @@ Options:
     -h, --help: prints help message
 
     -V, --version: print version information
-""")
+
+Press enter to stop, and kill all child threads""")
         exit(0)
 
     if url == "--version" or url == "-V":
