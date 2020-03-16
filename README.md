@@ -19,6 +19,8 @@ This is much slower and more error prone. Only use this option if you do not hav
 
 * `-V, --version`: print version information.
 
+Press enter to stop, and kill all child threads.
+
 ## Legal disclosure
 
 In addition to the MIT License, this further legal disclosure applies:
