@@ -8,7 +8,7 @@ python dos.py <destination> <# of threads> [options]
 
 #### Options:
 
-* `-v` verbose output
+* `-v`: verbose output
 
 * `-p`: use python's built in request module instead of `curl`.
 This is much slower and more error prone. Only use this option if you do not have `curl`.
