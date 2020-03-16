@@ -1,7 +1,7 @@
 # IMPORTS
 import threading # multi-threading
 from os import system # execute curl
-from sys import argv, stderr # get arguments, and print to stderr
+from sys import argv, stderr, platform # get arguments, platform detection, and print to stderr
 import requests # for running get requests
 from os import _exit # for exiting and killing all child threads
 
@@ -40,7 +40,10 @@ def ping(url, thread_count, verbose, py, num):
 
             # using curl
             else:
-                system("curl " + url + " &> /dev/null") # redirect output to /dev/null (silent)
+                if platform == "win32":
+                    system("curl " + url + " > NUL") # > NUL is equivalent to &> /dev/null on linux
+                else:
+                    system("curl " + url + " &> /dev/null") # redirect output to /dev/null (silent)
 
             # print verbose information
             if verbose:
