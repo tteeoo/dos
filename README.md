@@ -3,15 +3,21 @@
 ## Usage:
 
 ```
-python dos.py <destination> <# of threads> [options]
+python dos.py [options] | [<destination> <# of threads> [flags]]
 ```
+
+#### Flags:
+
+* `-v, --verbose`: verbose output.
+
+* `-p, --python`: use python's built in request module instead of `curl`.
+This is much slower and more error prone. Only use this option if you do not have `curl`.
 
 #### Options:
 
-* `-v`: verbose output
+* `-h, --help`: prints help message.
 
-* `-p`: use python's built in request module instead of `curl`.
-This is much slower and more error prone. Only use this option if you do not have `curl`.
+* `-V, --version`: print version information.
 
 ## Legal disclosure
 
