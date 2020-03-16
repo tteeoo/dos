@@ -55,13 +55,31 @@ Flags:
 Options:
     -h, --help: prints help message
 
-    -V, --version: print version information
+    -V, --version: prints version information
 
-Press enter to stop, and kill all child threads""")
+    -l, --legal: prints legal information
+
+Press enter to stop, and kill all child threads
+by Theo Henson (GH: tteeoo/dos) <theodorehenson at protonmail dot com>""")
         exit(0)
 
     if url == "--version" or url == "-V":
-        print("dos-0.1.0")
+        print('''                     
+     #               
+  mmm#   mmm    mmm  
+ #" "#  #" "#  #   " 
+ #   #  #   #   """m 
+ "#m##  "#m#"  "mmm"
+
+version 0.1.0
+
+by Theo Henson (GH: tteeoo/dos) <theodorehenson at protonmail dot com>
+''')
+        exit(0)
+
+    if url == "--legal" or url == "-l":
+        print("""In addition to the MIT License, this further legal disclosure applies:
+I (Theo Henson) am not responsible for the repercussions that you (a user of this software) may face through the illegal usage of this software, nor am I responsible for the damage that any user causes, using this software. By using this software, you take full responsibility, in other words, *use at your own risk*.""")
         exit(0)
 
 except IndexError:

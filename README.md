@@ -17,7 +17,9 @@ This is much slower and more error prone. Only use this option if you do not hav
 
 * `-h, --help`: prints help message.
 
-* `-V, --version`: print version information.
+* `-V, --version`: prints version information.
+
+* `-l, --legal`: prints legal information.
 
 Press enter to stop, and kill all child threads.
 
