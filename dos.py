@@ -98,6 +98,8 @@ by Theo Henson (GH: tteeoo/dos) <theodorehenson at protonmail dot com>
         print("""In addition to the MIT License, this further legal disclosure applies:
 I (Theo Henson) am not responsible for the repercussions that you (a user of this software) may face through the illegal usage of this software, nor am I responsible for the damage that any user causes, using this software. By using this software, you take full responsibility, in other words, *use at your own risk*.""")
         exit(0)
+
+    # verify url is valid by requesting it once
     try:
         requests.get(url)
     except requests.exceptions.MissingSchema:
