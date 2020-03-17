@@ -1,9 +1,17 @@
 # Network stress tester (Denial Of Service)
 
+## Prerequisites:
+
+Install the required modules with:
+
+```
+$ python3 -m pip install -r requirements.txt
+```
+
 ## Usage:
 
 ```
-python dos.py [options] | [<destination> <# of threads> [flags]]
+$ python3 dos.py [options] | [<destination> <# of threads> [flags]]
 ```
 
 #### Flags:
