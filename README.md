@@ -23,6 +23,10 @@ This is much slower and more error prone. Only use this option if you do not hav
 
 Press enter to stop, and kill all child threads.
 
+For effective results on a single, relatively low-power server, a few thousand threads will do.
+
+Target web pages that include back-end processing for best results.
+
 ## Legal disclosure
 
 In addition to the MIT License, this further legal disclosure applies:
