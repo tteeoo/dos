@@ -54,7 +54,7 @@ def ping(url, thread_count, verbose, py, num):
 # MAIN EXECUTION
 
 # exit with no arguments
-if len(argv) == 0:
+if len(argv) == 1:
     exit(0)
 
 # get first argument
