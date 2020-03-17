@@ -10,8 +10,8 @@ python dos.py [options] | [<destination> <# of threads> [flags]]
 
 * `-v, --verbose`: verbose output.
 
-* `-p, --python`: use python's built in request module instead of `curl`.
-This is much slower and more error prone. Only use this option if you do not have `curl`.
+* `-p, --python`: use python's requests module instead of `curl`.
+This is much slower and more error prone at high thread counts. Only use this option if you do not have `curl`.
 
 #### Options:
 
