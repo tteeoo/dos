@@ -16,7 +16,7 @@ def generate(url, thread_count, verbose, py):
         if threading.active_count() < thread_count: # executes if more threads are needed
             threading.Thread(target=ping,args=(url, thread_count, verbose, py, current_num,)).start() # spawns thread
             if verbose: # print information if verbose on
-                print("New thread started:", str(threading.active_count()))
+                print("New thread started:", str(current_num))
                 current_num += 1
         else:
             break
